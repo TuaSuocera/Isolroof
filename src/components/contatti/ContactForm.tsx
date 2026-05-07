@@ -1,10 +1,11 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ContactFormSchema, type ContactFormValues } from '@/lib/validations'
-import { SERVICES } from '@/lib/constants'
+import { SERVICES, COMPANY } from '@/lib/constants'
 
 const SERVIZI_OPTIONS = [
   ...SERVICES.map((s) => ({ value: s.slug, label: s.name })),
@@ -52,18 +53,13 @@ export default function ContactForm() {
   })
 
   async function onSubmit(data: ContactFormValues) {
-    try {
-      const res = await fetch('/api/contatti', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      })
-      if (!res.ok) throw new Error()
-      setStatus('success')
-      reset()
-    } catch {
-      setStatus('error')
-    }
+    const subject = encodeURIComponent(`Richiesta preventivo - ${data.servizio}`)
+    const body = encodeURIComponent(
+      `Nome: ${data.nome} ${data.cognome}\nEmail: ${data.email}\nTelefono: ${data.telefono ?? '-'}\nServizio: ${data.servizio}\n\n${data.messaggio}`
+    )
+    window.open(`mailto:${COMPANY.email}?subject=${subject}&body=${body}`)
+    setStatus('success')
+    reset()
   }
 
   if (status === 'success') {
@@ -130,9 +126,9 @@ export default function ContactForm() {
           />
           <span className="text-sm text-brand-gray">
             Accetto il trattamento dei dati personali ai sensi del{' '}
-            <a href="/privacy-policy" className="text-brand-red hover:underline" target="_blank">
+            <Link href="/privacy-policy" className="text-brand-red hover:underline" target="_blank">
               Regolamento GDPR (UE) 2016/679
-            </a>
+            </Link>
             . <span className="text-brand-red">*</span>
           </span>
         </label>
