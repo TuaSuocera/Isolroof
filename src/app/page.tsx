@@ -1,24 +1,21 @@
-import type { Metadata } from 'next'
-import Hero from '@/components/home/Hero'
-import ServicesPreview from '@/components/home/ServicesPreview'
-import StatsBar from '@/components/home/StatsBar'
-import WhyUs from '@/components/home/WhyUs'
-import CtaStrip from '@/components/home/CtaStrip'
-import { COMPANY, SITE_NAME } from '@/lib/constants'
-
-export const metadata: Metadata = {
-  title: `${SITE_NAME} — Impermeabilizzazioni e Lattoneria Tetti`,
-  description: COMPANY.description,
-}
+import Hero from '@/components/sections/Hero'
+import About from '@/components/sections/About'
+import NumberBand from '@/components/sections/NumberBand'
+import Services from '@/components/sections/Services'
+import Values from '@/components/sections/Values'
+import Works from '@/components/sections/Works'
+import Contact from '@/components/sections/Contact'
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <ServicesPreview />
-      <StatsBar />
-      <WhyUs />
-      <CtaStrip />
+      <About />
+      <NumberBand />
+      <Services />
+      <Values />
+      <Works />
+      <Contact />
     </>
   )
 }

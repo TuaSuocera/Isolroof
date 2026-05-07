@@ -1,26 +1,24 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Archivo } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import { localBusinessJsonLd } from '@/lib/seo'
-import { SITE_NAME, COMPANY } from '@/lib/constants'
 
-const inter = Inter({
+const archivo = Archivo({
   subsets: ['latin'],
-  variable: '--font-inter',
+  weight: ['300', '400', '500', '600', '700', '800'],
+  variable: '--font-archivo',
   display: 'swap',
 })
 
 export const metadata: Metadata = {
-  title: {
-    default: `${SITE_NAME} — Impermeabilizzazioni e Lattoneria Tetti`,
-    template: `%s | ${SITE_NAME}`,
-  },
-  description: COMPANY.description,
+  title: 'Isolroof — Impermeabilizzazioni, resine e tegola canadese',
+  description:
+    'Isolroof è specializzata in impermeabilizzazioni di coperture, applicazione di resine continue e posa di tegola canadese. Sopralluogo gratuito, garanzia decennale sulla posa.',
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://isolroof.it'),
   openGraph: {
-    siteName: SITE_NAME,
+    siteName: 'Isolroof',
     locale: 'it_IT',
     type: 'website',
   },
@@ -32,7 +30,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="it" className={inter.variable}>
+    <html lang="it" className={archivo.variable}>
       <head>
         <script
           type="application/ld+json"

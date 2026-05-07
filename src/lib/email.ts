@@ -1,23 +1,23 @@
 import type { ContactFormValues } from './validations'
 
-const SERVIZIMAP: Record<string, string> = {
-  'impermeabilizzazioni': 'Impermeabilizzazioni',
-  'lattoneria-tetti': 'Lattoneria Tetti',
-  'applicazione-resine': 'Applicazione Resine',
-  'tegola-canadese': 'Tegola Canadese',
-  'altro': 'Altro',
+const SERVIZIO_LABEL: Record<string, string> = {
+  impermeabilizzazione: 'Impermeabilizzazione tetto',
+  resina: 'Resina poliuretanica / poliurea',
+  tegola_canadese: 'Posa tegola canadese',
+  manutenzione: 'Manutenzione / riparazione',
+  altro: 'Altro',
 }
 
 export async function sendContactEmail(data: ContactFormValues): Promise<void> {
-  const subject = `Nuova richiesta da ${data.nome} ${data.cognome} — ${SERVIZIMAP[data.servizio] ?? data.servizio}`
+  const subject = `Nuova richiesta da ${data.name} — ${SERVIZIO_LABEL[data.service] ?? data.service}`
   const html = `
-    <h2>Nuova richiesta di contatto</h2>
+    <h2>Nuova richiesta di sopralluogo</h2>
     <table cellpadding="8" style="border-collapse:collapse;width:100%;max-width:600px">
-      <tr><td><strong>Nome</strong></td><td>${data.nome} ${data.cognome}</td></tr>
+      <tr><td><strong>Nome</strong></td><td>${data.name}</td></tr>
       <tr><td><strong>Email</strong></td><td>${data.email}</td></tr>
-      <tr><td><strong>Telefono</strong></td><td>${data.telefono ?? '—'}</td></tr>
-      <tr><td><strong>Servizio</strong></td><td>${SERVIZIMAP[data.servizio] ?? data.servizio}</td></tr>
-      <tr><td><strong>Messaggio</strong></td><td style="white-space:pre-wrap">${data.messaggio}</td></tr>
+      <tr><td><strong>Telefono</strong></td><td>${data.phone}</td></tr>
+      <tr><td><strong>Servizio</strong></td><td>${SERVIZIO_LABEL[data.service] ?? data.service}</td></tr>
+      <tr><td><strong>Note</strong></td><td style="white-space:pre-wrap">${data.notes ?? '—'}</td></tr>
     </table>
   `
 
@@ -37,7 +37,6 @@ export async function sendContactEmail(data: ContactFormValues): Promise<void> {
     return
   }
 
-  // Dev fallback: log to console
   console.log('[EMAIL] To:', to)
   console.log('[EMAIL] Subject:', subject)
   console.log('[EMAIL] Data:', data)
