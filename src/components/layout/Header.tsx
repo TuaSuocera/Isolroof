@@ -50,7 +50,7 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" aria-label="Isolroof" style={{ display: 'block', flexShrink: 0 }}>
           <Image
-            src="/logo.png"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logo.png`}
             alt="Isolroof"
             width={120}
             height={54}

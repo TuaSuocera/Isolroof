@@ -12,7 +12,7 @@ export default function Footer() {
           {/* Brand + claim */}
           <div>
             <Image
-              src="/logo.png"
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logo.png`}
               alt="Isolroof"
               width={120}
               height={56}

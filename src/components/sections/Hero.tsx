@@ -23,7 +23,7 @@ export default function Hero() {
         }}
       >
         <Image
-          src="/works/work-03.jpg"
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH}/works/work-03.jpg`}
           alt="Copertura Isolroof"
           fill
           style={{ objectFit: 'cover', objectPosition: 'center' }}

@@ -76,7 +76,7 @@ export default function Works() {
           >
             <div className="work-img">
               <Image
-                src={w.img}
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH}${w.img}`}
                 alt={w.title}
                 fill
                 style={{ objectFit: 'cover', objectPosition: 'center' }}
