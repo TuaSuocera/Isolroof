@@ -43,7 +43,7 @@ export default function Values() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
           style={{ marginBottom: 80, maxWidth: '30ch' }}
         >
@@ -62,7 +62,7 @@ export default function Values() {
           variants={container}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
+          viewport={{ once: false, amount: 0.1 }}
         >
           {values.map((v, i) => (
             <motion.div key={i} variants={item} className="value-card">

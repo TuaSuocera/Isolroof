@@ -10,7 +10,7 @@ export default function About() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           <div
@@ -44,7 +44,7 @@ export default function About() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
         >
           <p style={{ fontSize: 18, lineHeight: 1.6, color: '#222', margin: '0 0 22px', maxWidth: '54ch' }}>
