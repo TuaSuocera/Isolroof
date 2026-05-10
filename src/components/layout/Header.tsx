@@ -129,7 +129,25 @@ export default function Header() {
       <div onClick={close} style={{ position: 'fixed', inset: 0, zIndex: 38, background: 'rgba(0,0,0,0.5)', opacity: menuOpen ? 1 : 0, pointerEvents: menuOpen ? 'auto' : 'none', transition: 'opacity 0.3s' }} />
 
       {/* Mobile drawer */}
-      <nav style={{ position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 39, width: 'min(360px, 90vw)', background: 'var(--paper)', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '40px var(--pad)', transform: menuOpen ? 'translateX(0)' : 'translateX(100%)', transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)', overflowY: 'auto' }}>
+      <nav style={{ position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 39, width: 'min(360px, 90vw)', background: 'var(--paper)', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '40px var(--pad)', transform: menuOpen ? 'translateX(0)' : 'translateX(100%)', transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)', overflowY: 'auto', overflow: 'hidden' }}>
+        {/* Background logo — decorative watermark */}
+        <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Image
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logo.png`}
+            alt=""
+            aria-hidden="true"
+            width={200}
+            height={90}
+            style={{
+              width: 'auto',
+              height: 'min(380px, 100vw)',
+              transform: 'rotate(90deg)',
+              opacity: 0.07,
+              filter: 'brightness(0)',
+            }}
+          />
+        </div>
+
         {navLinks.map((link) => (
           <a key={link.href} href={link.href} onClick={close} className="drawer-link"
             style={{ display: 'block', textDecoration: 'none', color: 'var(--ink)', fontSize: 'clamp(24px, 5vw, 36px)', fontWeight: 700, letterSpacing: '-0.01em', textTransform: 'uppercase', lineHeight: 1.15, padding: '12px 0', borderBottom: '1px solid var(--rule)', transition: 'color 0.2s' }}>
