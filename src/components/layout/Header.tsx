@@ -61,10 +61,10 @@ export default function Header() {
             <Image
               src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logo.png`}
               alt="Isolroof"
-              width={160}
-              height={72}
+              width={200}
+              height={90}
               style={{
-                height: 72,
+                height: 90,
                 width: 'auto',
                 display: 'block',
                 filter: scrolled ? 'none' : 'brightness(0) invert(1)',
