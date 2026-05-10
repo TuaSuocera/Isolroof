@@ -129,21 +129,23 @@ export default function Header() {
       <div onClick={close} style={{ position: 'fixed', inset: 0, zIndex: 38, background: 'rgba(0,0,0,0.5)', opacity: menuOpen ? 1 : 0, pointerEvents: menuOpen ? 'auto' : 'none', transition: 'opacity 0.3s' }} />
 
       {/* Mobile drawer */}
-      <nav style={{ position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 39, width: 'min(360px, 90vw)', background: 'var(--paper)', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '40px var(--pad)', transform: menuOpen ? 'translateX(0)' : 'translateX(100%)', transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)', overflowY: 'auto', overflow: 'hidden' }}>
+      <nav style={{ position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 39, width: 'min(360px, 90vw)', background: 'var(--paper)', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '40px var(--pad)', transform: menuOpen ? 'translateX(0)' : 'translateX(100%)', transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)', overflowY: 'auto' }}>
         {/* Background logo — decorative watermark */}
-        <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <Image
+        <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logo.png`}
             alt=""
             aria-hidden="true"
-            width={200}
-            height={90}
             style={{
-              width: 'auto',
-              height: 'min(380px, 100vw)',
-              transform: 'rotate(90deg)',
-              opacity: 0.07,
-              filter: 'brightness(0)',
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%) translateX(-90px) rotate(90deg)',
+              width: '300vh',
+              height: 'min(480px, 128vw)',
+              opacity: 0.18,
+              display: 'block',
             }}
           />
         </div>
