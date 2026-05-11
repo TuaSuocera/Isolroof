@@ -7,8 +7,7 @@ import { motion } from 'framer-motion'
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [videoEnded, setVideoEnded] = useState(false)
-  const [isVisible, setIsVisible] = useState(true)
+  const [showVideo, setShowVideo] = useState(true)
 
   useEffect(() => {
     const section = sectionRef.current
@@ -16,14 +15,15 @@ export default function Hero() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        const visible = entry.isIntersecting
-        setIsVisible(visible)
         const video = videoRef.current
         if (!video) return
-        if (visible && !videoEnded) {
+        if (entry.isIntersecting) {
+          video.currentTime = 0
+          setShowVideo(true)
           video.play().catch(() => {})
         } else {
           video.pause()
+          setShowVideo(false)
         }
       },
       { threshold: 0.1 }
@@ -31,9 +31,7 @@ export default function Hero() {
 
     observer.observe(section)
     return () => observer.disconnect()
-  }, [videoEnded])
-
-  const showVideo = isVisible && !videoEnded
+  }, [])
 
   return (
     <section
@@ -62,7 +60,7 @@ export default function Hero() {
           autoPlay
           muted
           playsInline
-          onEnded={() => setVideoEnded(true)}
+          onEnded={() => setShowVideo(false)}
           style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
         >
           <source src={`${process.env.NEXT_PUBLIC_BASE_PATH}/hero-video.mp4`} type="video/mp4" />
