@@ -28,6 +28,20 @@ const services = [
   },
   {
     num: '04',
+    name: 'Isolamenti',
+    body: 'Isolamento termico e acustico di coperture, pareti e solai. Pannelli in polistirene espanso, lana di roccia e schiuma poliuretanica proiettata per ridurre dispersioni e migliorare il comfort abitativo.',
+    specs: ['Termico & acustico', 'Cappotto esterno', 'Risparmio energetico'],
+    img: '/works/work-03.jpg',
+  },
+  {
+    num: '05',
+    name: 'Lattonerie',
+    body: 'Progettazione e installazione di grondaie, pluviali, scossaline, converse e lucernari in rame, zinco-titanio e acciaio preverniciato. Finitura su misura e smaltimento acque garantito.',
+    specs: ['Rame & zinco-titanio', 'Su misura', 'Smaltimento acque'],
+    img: '/works/work-01.jpg',
+  },
+  {
+    num: '06',
     name: 'Manutenzione & ripristini',
     body: 'Diagnosi infiltrazioni, sigillatura giunti, sostituzione lattonerie, manutenzione programmata su contratto annuale. Interventi rapidi anche in urgenza.',
     specs: ['Diagnosi inclusa', 'Pronto intervento', 'Contratti annuali'],
@@ -89,8 +103,8 @@ export default function Services() {
           </div>
           <p style={{ fontSize: 18, lineHeight: 1.55, color: '#333', margin: 0, maxWidth: '48ch' }}>
             Ogni tetto ha bisogno della tecnica giusta. Scegliamo il sistema
-            in base al supporto, al clima e all&apos;estetica dell&apos;edificio. Tre
-            discipline, una sola squadra.
+            in base al supporto, al clima e all&apos;estetica dell&apos;edificio.
+            Un&apos;unica squadra, tutte le discipline.
           </p>
         </motion.div>
 

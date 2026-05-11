@@ -68,7 +68,7 @@ export default function Hero() {
             opacity: 0.85,
           }}
         >
-          Impermeabilizzazioni · Resine · Tegola canadese
+          Impermeabilizzazioni · Isolamenti · Lattonerie · Resine · Tegola canadese
         </motion.div>
 
         <motion.h1
