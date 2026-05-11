@@ -1,11 +1,43 @@
 'use client'
 
+import { useRef, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [videoEnded, setVideoEnded] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const visible = entry.isIntersecting
+        setIsVisible(visible)
+        const video = videoRef.current
+        if (!video) return
+        if (visible && !videoEnded) {
+          video.play().catch(() => {})
+        } else {
+          video.pause()
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    observer.observe(section)
+    return () => observer.disconnect()
+  }, [videoEnded])
+
+  const showVideo = isVisible && !videoEnded
+
   return (
     <section
+      ref={sectionRef}
       style={{
         position: 'relative',
         minHeight: '100vh',
@@ -14,17 +46,43 @@ export default function Hero() {
         background: '#000',
       }}
     >
-      {/* Background image */}
+      {/* Background video */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
           filter: 'brightness(0.55) saturate(0.9)',
+          opacity: showVideo ? 1 : 0,
+          transition: 'opacity 0.8s ease',
+          zIndex: 1,
+        }}
+      >
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          playsInline
+          onEnded={() => setVideoEnded(true)}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
+        >
+          <source src={`${process.env.NEXT_PUBLIC_BASE_PATH}/hero-video.mp4`} type="video/mp4" />
+        </video>
+      </div>
+
+      {/* Static image (chiesa3) — shown when video ended or scrolled away */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          filter: 'brightness(0.55) saturate(0.9)',
+          opacity: showVideo ? 0 : 1,
+          transition: 'opacity 0.8s ease',
+          zIndex: 1,
         }}
       >
         <Image
-          src={`${process.env.NEXT_PUBLIC_BASE_PATH}/works/work-03.jpg`}
-          alt="Copertura Isolroof"
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH}/chiesa3.jpg`}
+          alt="Isolroof — coperture"
           fill
           style={{ objectFit: 'cover', objectPosition: 'center' }}
           priority
@@ -36,6 +94,7 @@ export default function Hero() {
         style={{
           position: 'absolute',
           inset: 0,
+          zIndex: 2,
           background:
             'linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.7) 100%)',
         }}
@@ -46,7 +105,7 @@ export default function Hero() {
         className="wrap"
         style={{
           position: 'relative',
-          zIndex: 2,
+          zIndex: 3,
           minHeight: '100vh',
           display: 'flex',
           flexDirection: 'column',
