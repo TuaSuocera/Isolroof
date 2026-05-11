@@ -131,18 +131,16 @@ export default function Header() {
       {/* Mobile drawer */}
       <nav style={{ position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 39, width: 'min(360px, 90vw)', background: 'var(--paper)', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '40px var(--pad)', transform: menuOpen ? 'translateX(0)' : 'translateX(100%)', transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)', overflowY: 'auto' }}>
         {/* Background logo — decorative watermark */}
-        <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', paddingTop: 40 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logo.png`}
             alt=""
             aria-hidden="true"
             style={{
-              width: 'auto',
-              height: 'min(380px, 100vw)',
-              transform: 'rotate(90deg)',
-              opacity: 0.07,
-              filter: 'brightness(0)',
+              width: '130%',
+              height: 'auto',
+              opacity: 0.12,
               display: 'block',
             }}
           />
