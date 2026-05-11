@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed -i 's/viewport={{ once: true, amount: 0\\\\.2 }}/viewport={{ once: false, amount: 0.2 }}/g' src/components/sections/About.tsx src/components/sections/Contact.tsx src/components/sections/Services.tsx src/components/sections/Works.tsx)",
+      "Bash(sed -i 's/viewport={{ once: true, amount: 0\\\\.1 }}/viewport={{ once: false, amount: 0.1 }}/g' src/components/sections/Values.tsx)",
+      "Bash(sed -i 's/viewport={{ once: true, amount: 0\\\\.2 }}/viewport={{ once: false, amount: 0.2 }}/g' src/components/sections/Values.tsx)",
+      "Bash(git commit -m ' *)",
+      "Bash(pnpm type-check *)",
+      "Bash(npx tsc *)",
+      "Bash(npx next *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(findstr LISTENING)",
+      "PowerShell(Stop-Process -Id 172 -Force)",
+      "PowerShell(Stop-Process -Id 3196 -Force)",
+      "Bash(ls /tmp)",
+      "Read(//tmp/**)",
+      "Bash(node -e ' *)",
+      "Bash(node -e \"require\\('puppeteer'\\)\")",
+      "Bash(gh run *)",
+      "Bash(pnpm build *)",
+      "Bash(npx kill-port *)",
+      "Bash(Remove-Item -Recurse -Force .next -ErrorAction SilentlyContinue)",
+      "Bash(ffmpeg -version)",
+      "Bash(where ffmpeg *)",
+      "Bash(winget list *)",
+      "Bash(ls \"C:/Users/Dio Maialino/AppData/Local/Microsoft/WinGet/Packages/\" 2>/dev/null | grep -i ffmpeg || find /c/Users -name \"ffmpeg.exe\" 2>/dev/null | head -3)",
+      "Read(//c/Users/**)",
+      "Bash('/c/Users/Dio Maialino/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-8.1.1-full_build/bin/ffmpeg.exe' -i c:/progettiClaude/Isolroof/materialeAzienda/dronChiesaPrima.MP4 -ss 00:00:36 -to 00:00:50 -c:v libx264 -preset fast -crf 23 -an -movflags +faststart c:/progettiClaude/Isolroof/public/hero-video.mp4 -y)",
+      "Bash('/c/Users/Dio Maialino/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-8.1.1-full_build/bin/ffmpeg.exe' -i c:/progettiClaude/Isolroof/materialeAzienda/dronChiesaPrima.MP4 -ss 00:00:36 -to 00:00:50 -c:v libx264 -preset fast -crf 30 -vf scale=1920:-2 -an -movflags +faststart c:/progettiClaude/Isolroof/public/hero-video.mp4 -y)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} %{size_download}b\" http://localhost:3000/hero-video.mp4)"
+    ]
+  }
+}
