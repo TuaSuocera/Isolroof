@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, serviceJsonLd } from '@/lib/seo'
 import { SERVICES } from '@/lib/constants'
 import ServiceHero from '@/components/servizi/ServiceHero'
 import ServiceFeatures from '@/components/servizi/ServiceFeatures'
@@ -28,8 +28,16 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
   const service = SERVICES.find((s) => s.slug === params.slug)
   if (!service) notFound()
 
+  const jsonLd = serviceJsonLd(service.slug)
+
   return (
     <>
+      {jsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      )}
       <ServiceHero
         name={service.name}
         description={service.description}

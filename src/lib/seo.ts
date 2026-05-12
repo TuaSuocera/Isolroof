@@ -1,27 +1,35 @@
 import type { Metadata } from 'next'
-import { COMPANY, SITE_NAME, SITE_URL } from './constants'
+import { COMPANY, SERVICES, SITE_NAME, SITE_URL } from './constants'
 
 interface PageMeta {
   title: string
   description: string
   path?: string
+  rawTitle?: boolean
 }
 
-export function buildMetadata({ title, description, path = '' }: PageMeta): Metadata {
+export function buildMetadata({ title, description, path = '', rawTitle = false }: PageMeta): Metadata {
   const url = `${SITE_URL}${path}`
+  const fullTitle = rawTitle ? title : `${title} | ${SITE_NAME}`
   return {
-    title: `${title} | ${SITE_NAME}`,
+    title: fullTitle,
     description,
     metadataBase: new URL(SITE_URL),
     alternates: { canonical: url },
     openGraph: {
-      title: `${title} | ${SITE_NAME}`,
+      title: fullTitle,
       description,
       url,
       siteName: SITE_NAME,
       locale: 'it_IT',
       type: 'website',
       images: [{ url: `${SITE_URL}/og-image.jpg`, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: fullTitle,
+      description,
+      images: [`${SITE_URL}/og-image.jpg`],
     },
   }
 }
@@ -60,4 +68,27 @@ export const localBusinessJsonLd = {
       itemOffered: { '@type': 'Service', name },
     })),
   },
+}
+
+export function serviceJsonLd(slug: string) {
+  const service = SERVICES.find((s) => s.slug === slug)
+  if (!service) return null
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: service.name,
+    description: service.description,
+    provider: {
+      '@type': 'RoofingContractor',
+      name: COMPANY.name,
+      url: SITE_URL,
+      telephone: COMPANY.phone,
+    },
+    url: `${SITE_URL}/servizi/${service.slug}`,
+    areaServed: {
+      '@type': 'Country',
+      name: 'Italy',
+    },
+    image: service.image,
+  }
 }

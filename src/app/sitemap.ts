@@ -2,19 +2,26 @@ import type { MetadataRoute } from 'next'
 import { SITE_URL, SERVICES } from '@/lib/constants'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes = ['', '/chi-siamo', '/servizi', '/galleria', '/contatti'].map((path) => ({
-    url: `${SITE_URL}${path}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: path === '' ? 1 : 0.8,
-  }))
+  const coreRoutes: MetadataRoute.Sitemap = [
+    { url: `${SITE_URL}`, lastModified: new Date(), changeFrequency: 'weekly', priority: 1.0 },
+    { url: `${SITE_URL}/chi-siamo`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${SITE_URL}/servizi`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${SITE_URL}/galleria`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${SITE_URL}/contatti`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.8 },
+  ]
 
-  const serviceRoutes = SERVICES.map((s) => ({
+  const serviceRoutes: MetadataRoute.Sitemap = SERVICES.map((s) => ({
     url: `${SITE_URL}/servizi/${s.slug}`,
     lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
+    changeFrequency: 'monthly',
+    priority: 0.8,
   }))
 
-  return [...staticRoutes, ...serviceRoutes]
+  const secondaryRoutes: MetadataRoute.Sitemap = [
+    { url: `${SITE_URL}/lavora-con-noi/collabora`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.5 },
+    { url: `${SITE_URL}/lavora-con-noi/assunzione`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.5 },
+    { url: `${SITE_URL}/privacy-policy`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
+  ]
+
+  return [...coreRoutes, ...serviceRoutes, ...secondaryRoutes]
 }
